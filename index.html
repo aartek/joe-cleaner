@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>JOEMONSTER - daj mi poczytać</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<style>
+body{
+	font-family: Arial;
+}
+#bookmarklet{
+	border: 3px solid #C71010;
+	display: inline-block;
+	text-decoration: none;
+	border-radius: 8px;
+	color: #C71010;
+	padding: 10px 10px 10px 10px;
+	margin-left: 50px;
+}
+#length{
+	margin-left: 50px;
+	padding: 10px 10px 10px 10px;
+	font-size: 18px;
+}
+h2{
+	margin-left: 10px;
+}
+</style>
+</head>
+<body>
+	<h2>1. Minimalna ilość słów</h2>
+	<input type="number" step="1" id="length" oninput="updateUrl()" onchange="updateUrl()" value="700"/>
+	<h2>2. Przesuń ten przycisk na pasek zakładek</h2>
+	<a id="bookmarklet" href=""></a>
+	<h2>3. Wejdź na <a href="http://joemonster.org" target="_blank">joemonster.org</a></h2>
+	<h2>4. Kliknij w dodaną zakładkę</h2>
+	<h2>5. Jeżeli został choć jeden artykuł, to jest Twój szczęśliwy dzień!</h2>
+</body>
+<script type="application/javascript">
+	function updateUrl(){
+		var val = document.getElementById('length').value;
+		var bookmarklet = document.getElementById('bookmarklet');
+		bookmarklet.textContent = 'JOEMONSTER - daj mi poczytać ('+val+')';
+		bookmarklet.setAttribute("href","javascript:(function(){var t=window.location.href;$('.rgHome').remove(),$('.indexart:not([id])').remove(),$('hr[size=1]').remove(),$.get(t,function(t){var e=$(t),r=[],i=e.find('.indexart');i.each(function(t){var e=$(this).attr('id');r.push('http://joemonster.org/art/'+e)}),$.each(r,function(t,e){$.get(e,function(e){var r=$(e),n=r.find('#arcik').text();if(!n.length){var o=$(i[t]).attr('id');$('#'+o).remove()}var a=n.split(' ').length;if(" + val + ">a){var o=$(i[t]).attr('id');$('#'+o).remove()}})})})})();");
+	}
+	updateUrl();
+</script>
+</html>
