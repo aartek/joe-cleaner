@@ -1,5 +1,7 @@
 javascript:(function(){var siteUrl = window.location.href;
 $('.rgHome').remove();
+$('.retroHeader').remove();
+$('.retroArt').remove();
 $('.indexart:not([id])').remove();
 $('hr[size=1]').remove();
 $.get(siteUrl,function(code){
@@ -14,16 +16,27 @@ $.get(siteUrl,function(code){
 		$.get(link, function(result){
 			var html = $(result);
 			var content = html.find('#arcik').text();
-			if(!content.length){
-				var artId = $(arts[index]).attr('id');
-				$('#' + artId).remove();
-			}
-			var contentLength = content.split(' ').length;
-			if( contentLength < 700){
+			var title = html.find('.title').text();
+
+			if(!isValuableContent(content,title)){
 				var artId = $(arts[index]).attr('id');
 				$('#' + artId).remove();
 			};
 		});
 	});
+	
+	function isValuableContent(content, title){
+		if(!content.length){
+			return false;
+		}
+		var isFaktopedia = title.toLowerCase().indexOf('faktopedia') >= 0;
+		var isMapy = title.toLowerCase().indexOf('kolekcja intrygujących map') >= 0;
+		console.log(isFaktopedia);
+		var contentLength = content.split(' ').length;
+		if(contentLength < 700 && !isFaktopedia && !isMapy){
+			return false;
+		}
+		return true;
+	}
 });
 })();
