@@ -51,7 +51,7 @@ h2{
 		var val = document.getElementById('length').value;
 		var bookmarklet = document.getElementById('bookmarklet');
 		bookmarklet.textContent = 'JOEMONSTER - daj mi poczytać ('+val+')';
-		bookmarklet.setAttribute("href","javascript:(function(){var e=window.location.href;$('.rgHome').remove(),$('.retroHeader').remove(),$('.retroArt').remove(),$('.indexart:not([id])').remove(),$('hr[size=1]').remove(),$.get(e,function(e){function t(e,t){if(!e.length)return!1;var r=t.toLowerCase().indexOf('faktopedia')>=0,o=t.toLowerCase().indexOf('kolekcja intrygujących map')>=0;console.log(r);var n=e.split(' ').length;return "+ val+ ">n&&!r&&!o?!1:!0}var r=$(e),o=[],n=r.find('.indexart');n.each(function(e){var t=$(this).attr('id');o.push('http://joemonster.org/art/'+t)}),$.each(o,function(e,r){$.get(r,function(r){var o=$(r),i=o.find('#arcik').text(),a=o.find('.title').text();if(!t(i,a)){var f=$(n[e]).attr('id');$('#'+f).remove()}})})})}();");
+		bookmarklet.setAttribute("href","javascript:(function(){var e=window.location.href;$('.rgHome').remove(),$('.retroHeader').remove(),$('.retroArt').remove(),$('.indexart:not([id])').remove(),$('hr[size=1]').remove(),$.get(e,function(e){function t(e,t){if(!e.length)return!1;var r=t.toLowerCase().indexOf('faktopedia')>=0,o=t.toLowerCase().indexOf('kolekcja intrygujących map')>=0;console.log(r);var n=e.split(' ').length;return "+ val+ ">n&&!r&&!o?!1:!0}var r=$(e),o=[],n=r.find('.indexart');n.each(function(e){var t=$(this).attr('id');o.push('http://joemonster.org/art/'+t)}),$.each(o,function(e,r){$.get(r,function(r){var o=$(r),i=o.find('#arcik').text(),a=o.find('.title').text();if(!t(i,a)){var f=$(n[e]).attr('id');$('#'+f).remove()}})})})})();");
 		
 	}
 	updateUrl();
