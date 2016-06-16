@@ -31,7 +31,6 @@ $.get(siteUrl,function(code){
 		}
 		var isFaktopedia = title.toLowerCase().indexOf('faktopedia') >= 0;
 		var isMapy = title.toLowerCase().indexOf('kolekcja intrygujących map') >= 0;
-		console.log(isFaktopedia);
 		var contentLength = content.split(' ').length;
 		if(contentLength < 700 && !isFaktopedia && !isMapy){
 			return false;
